@@ -87,10 +87,7 @@ Multithread-WordGame/
 
 
 📄 참고 자료
-
-
-
-프로젝트 보고서 PDF
+- [프로젝트 보고서 PDF](./docs/wordgame_report.pdf)
 
 
 
