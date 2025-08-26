@@ -1,0 +1,12 @@
+0
+elephant
+giraffe
+zebra
+heart
+tiger
+1
+computer
+keyboard
+lion
+screen
+cord
