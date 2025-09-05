@@ -116,37 +116,47 @@ class ThreadedOutputHandler extends Thread {
 
     public void run() {
         while (true) {
-        	if(g.sharedData.whoami == 0) {
-        		client.wait_sensed();
-        	}
-        	else { // 컴퓨터일때
-        		try {
-					sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-        	}
-        	
-        	System.out.println("OutputHandler wake up...");
-        	
-        	if(g.sharedData.whoami == 0) {
-            	try {
-            		String guess = g.getGuess();
-    	            System.out.println("guess : " + guess);
-    	            
-    	            if (guess != null && !guess.isEmpty()) {
-    	               os.writeBytes(guess + "\n");
-    	            }
-    	            client.char_sensed = false;
-    	         } catch (IOException e) {e.printStackTrace();}
-        	}
-        	else {
-        		try {
-					os.writeBytes('a' + "\n");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-        	}
+            if (g.sharedData == null) {
+                try {
+                    // Wait for the initial shared data to arrive from the server
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                continue;
+            }
+
+            if(g.sharedData.whoami == 0) {
+                    client.wait_sensed();
+            }
+            else { // 컴퓨터일때
+                    try {
+                                    sleep(1000);
+                            } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                            }
+            }
+
+            System.out.println("OutputHandler wake up...");
+
+            if(g.sharedData.whoami == 0) {
+            try {
+                    String guess = g.getGuess();
+                System.out.println("guess : " + guess);
+
+                if (guess != null && !guess.isEmpty()) {
+                   os.writeBytes(guess + "\n");
+                }
+                client.char_sensed = false;
+             } catch (IOException e) {e.printStackTrace();}
+            }
+            else {
+                    try {
+                                    os.writeBytes('a' + "\n");
+                            } catch (IOException e) {
+                                    e.printStackTrace();
+                            }
+            }
 
         }
     }
