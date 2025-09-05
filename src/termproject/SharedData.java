@@ -29,7 +29,7 @@ public class SharedData implements Serializable
 		String correct_state1 = String.format("%19s %s\n", "current correct(1):", Arrays.toString(correct_character_index[P1]));
 		String correct_state2 = String.format("%19s %s\n", "current correct(2):", Arrays.toString(correct_character_index[P2]));
 		String sum1 = String.format("%19s correct = %d, wrong = %d\n", "sum(1):", sum[P1][0], sum[P1][1]);
-		String sum2 = String.format("%19s correct = %d, wrong = %d\n", "sum(1):", sum[P2][0], sum[P2][1]);
+                String sum2 = String.format("%19s correct = %d, wrong = %d\n", "sum(2):", sum[P2][0], sum[P2][1]);
 		
 		return "\n" + introduce + correct_state1 + sum1 + correct_state2 + sum2;
 	}
